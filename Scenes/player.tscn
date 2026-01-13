@@ -1,0 +1,104 @@
+[gd_scene load_steps=22 format=3 uid="uid://dwrvbwfrrf0mw"]
+
+[ext_resource type="Script" uid="uid://c4tlwuxgjjmhd" path="res://Scripts/player.gd" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://d0kno6aentxq5" path="res://Art/Animations/Stickman-Dude/Idle/frame0001.png" id="2_fs7ks"]
+[ext_resource type="Texture2D" uid="uid://ce0sk2c456hpa" path="res://Art/Animations/Stickman-Dude/Idle/frame0002.png" id="3_l6n3p"]
+[ext_resource type="Texture2D" uid="uid://hy2cy7iuwdam" path="res://Art/Animations/Stickman-Dude/Idle/frame0003.png" id="4_olqyp"]
+[ext_resource type="Texture2D" uid="uid://bw1sk403sw73v" path="res://Art/Animations/Stickman-Dude/Idle/frame0004.png" id="5_wpjfl"]
+[ext_resource type="Texture2D" uid="uid://t7a0vvc1f3hb" path="res://Art/Animations/Stickman-Dude/Idle/frame0005.png" id="6_bi64h"]
+[ext_resource type="Texture2D" uid="uid://bq4j1fr0oy4b" path="res://Art/Animations/Stickman-Dude/Idle/frame0006.png" id="7_2ijsl"]
+[ext_resource type="Texture2D" uid="uid://df3ug8hu6xjm2" path="res://Art/Animations/Stickman-Dude/Idle/frame0007.png" id="8_p1odr"]
+[ext_resource type="Texture2D" uid="uid://bskeoxnweufaj" path="res://Art/Animations/Stickman-Dude/Idle/frame0008.png" id="9_0gysh"]
+[ext_resource type="Texture2D" uid="uid://c05y567c6dhik" path="res://Art/Animations/Stickman-Dude/Idle/frame0009.png" id="10_vfarp"]
+[ext_resource type="Texture2D" uid="uid://dws82qh20xli8" path="res://Art/Animations/Stickman-Dude/Idle/frame0010.png" id="11_fs7ks"]
+[ext_resource type="Texture2D" uid="uid://ce6praussv1n2" path="res://Art/Animations/Stickman-Dude/Running/frame0011.png" id="12_83xs0"]
+[ext_resource type="Texture2D" uid="uid://df1auydrjwwm0" path="res://Art/Animations/Stickman-Dude/Running/frame0012.png" id="13_ypfnu"]
+[ext_resource type="Texture2D" uid="uid://bwlw1ekt67ayu" path="res://Art/Animations/Stickman-Dude/Running/frame0013.png" id="14_xuaoq"]
+[ext_resource type="Texture2D" uid="uid://bldcys7gwkaj2" path="res://Art/Animations/Stickman-Dude/Running/frame0014.png" id="15_wohnl"]
+[ext_resource type="Texture2D" uid="uid://yio6bwbhs8f4" path="res://Art/Animations/Stickman-Dude/Running/frame0015.png" id="16_36dho"]
+[ext_resource type="Texture2D" uid="uid://wlumwv66bbtm" path="res://Art/Animations/Stickman-Dude/Running/frame0016.png" id="17_yh6i2"]
+[ext_resource type="Texture2D" uid="uid://g5ukj7u3c3ud" path="res://Art/Animations/Stickman-Dude/Running/frame0017.png" id="18_nv4vc"]
+[ext_resource type="Texture2D" uid="uid://yxxy1oqhehvs" path="res://Art/Animations/Stickman-Dude/Running/frame0018.png" id="19_8gxox"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fs7ks"]
+radius = 10.5
+height = 38.333336
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_11gg7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fs7ks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_l6n3p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_olqyp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wpjfl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_bi64h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_2ijsl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_p1odr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0gysh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_vfarp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_fs7ks")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_83xs0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ypfnu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_xuaoq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_wohnl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_36dho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_yh6i2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_nv4vc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_8gxox")
+}],
+"loop": true,
+"name": &"run",
+"speed": 8.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_cvnsp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(6, 6)
+shape = SubResource("CapsuleShape2D_fs7ks")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_11gg7")
+animation = &"run"

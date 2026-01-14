@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dwrvbwfrrf0mw"]
+[gd_scene load_steps=27 format=3 uid="uid://dwrvbwfrrf0mw"]
 
 [ext_resource type="Script" uid="uid://c4tlwuxgjjmhd" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://d0kno6aentxq5" path="res://Art/Animations/Stickman-Dude/Idle/frame0001.png" id="2_fs7ks"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://cysurlp0khivp" path="res://Scripts/States/Ground/run.gd" id="21_olqyp"]
 [ext_resource type="Script" uid="uid://cebjitm7tiv1n" path="res://Scripts/States/Ground/idle.gd" id="21_wpjfl"]
 [ext_resource type="Script" uid="uid://cd8xggkw00d3m" path="res://Scripts/States/Air/air.gd" id="23_bi64h"]
+[ext_resource type="Script" uid="uid://c56dpb4l1074t" path="res://Scripts/States/Air/jump.gd" id="24_2ijsl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fs7ks"]
 radius = 10.5
@@ -92,11 +93,11 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 8.0
+"speed": 10.0
 }]
 
 [node name="Player" type="CharacterBody2D"]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.35, 0.35)
 script = ExtResource("1_cvnsp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -106,6 +107,7 @@ shape = SubResource("CapsuleShape2D_fs7ks")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_11gg7")
 animation = &"run"
+frame_progress = 0.8124598
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("20_wpjfl")
@@ -121,3 +123,4 @@ script = ExtResource("21_olqyp")
 script = ExtResource("23_bi64h")
 
 [node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource("24_2ijsl")

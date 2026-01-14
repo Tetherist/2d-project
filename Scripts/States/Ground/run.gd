@@ -12,6 +12,10 @@ func physics_update(delta: float):
 	
 	player.move_and_slide()
 	
-	# transition
-	if !Input.is_action_pressed("move_left") and !Input.is_action_pressed("move_right"):
+	# transitions
+	if not player.is_on_floor():
+		state_machine.transition_to("Air")
+	elif Input.is_action_just_pressed("jump"):
+		state_machine.transition_to("jump")
+	elif direction == 0:
 		state_machine.transition_to("idle")

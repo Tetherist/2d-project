@@ -23,4 +23,3 @@ shape = SubResource("RectangleShape2D_go701")
 
 [node name="Player" parent="." instance=ExtResource("2_go701")]
 position = Vector2(552, 141)
-JUMP_VELOCITY = -300.0

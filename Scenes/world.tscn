@@ -8,8 +8,25 @@ size = Vector2(190.5, 20)
 
 [node name="World" type="Node"]
 
+[node name="Player" parent="." instance=ExtResource("2_go701")]
+position = Vector2(239.00003, 242.00002)
+
+[node name="Ground2" type="StaticBody2D" parent="."]
+position = Vector2(1104, 588)
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground2"]
+position = Vector2(24, 0)
+scale = Vector2(8.96875, 1)
+texture = ExtResource("1_a02cp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground2"]
+position = Vector2(21.5, 0)
+scale = Vector2(6, 6)
+shape = SubResource("RectangleShape2D_go701")
+
 [node name="Ground" type="StaticBody2D" parent="."]
-position = Vector2(552, 587)
+position = Vector2(121, 591)
+scale = Vector2(0.52, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Ground"]
 position = Vector2(24, 0)
@@ -21,5 +38,16 @@ position = Vector2(21.5, 0)
 scale = Vector2(6, 6)
 shape = SubResource("RectangleShape2D_go701")
 
-[node name="Player" parent="." instance=ExtResource("2_go701")]
-position = Vector2(552, 141)
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(58, 352)
+rotation = 1.5707964
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall"]
+position = Vector2(24, 0)
+scale = Vector2(8.96875, 1)
+texture = ExtResource("1_a02cp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(21.5, 0)
+scale = Vector2(6, 6)
+shape = SubResource("RectangleShape2D_go701")

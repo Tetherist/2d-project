@@ -33,7 +33,7 @@
 [ext_resource type="Script" uid="uid://c56dpb4l1074t" path="res://Scripts/States/Air/jump.gd" id="24_2ijsl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fs7ks"]
-radius = 10.5
+radius = 11.904763
 height = 38.333336
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_11gg7"]
@@ -149,8 +149,7 @@ shape = SubResource("CapsuleShape2D_fs7ks")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_11gg7")
-animation = &"rising"
-frame_progress = 0.62181157
+animation = &"run"
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("20_wpjfl")

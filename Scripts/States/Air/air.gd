@@ -17,7 +17,7 @@ func physics_update(delta: float):
 	
 	# if player going down, increase gravity
 	if player.velocity.y > 0:
-		current_gravity *= 1.5
+		current_gravity *= 1.8
 	
 	# gravity
 	player.velocity.y += current_gravity * delta
@@ -27,8 +27,10 @@ func physics_update(delta: float):
 	# horizontal movement in the air
 	var direction = Input.get_axis("move_left", "move_right")
 	if direction != 0:
-		player.velocity.x = direction * player.SPEED
+		player.velocity.x = move_toward(player.velocity.x, direction * player.speed, player.acceleration * delta)
 		player.animated_sprite.flip_h = direction < 0
+	else:
+		player.velocity.x = move_toward(player.velocity.x, 0.0, player.friction * delta)
 		
 	player.move_and_slide()
 	

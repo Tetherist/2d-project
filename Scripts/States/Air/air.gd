@@ -17,8 +17,10 @@ func physics_update(delta: float):
 		if not player.coyote_timer.is_stopped():
 			state_machine.transition_to("jump")
 		elif player.jump_count < player.max_jumps:
+			if player.jump_count == 0:
+				player.jump_count = 1
 			state_machine.transition_to("jump")
-	
+			
 	var current_gravity = player.gravity
 
 	# variable jump height
@@ -32,7 +34,10 @@ func physics_update(delta: float):
 	# gravity
 	player.velocity.y += current_gravity * delta
 	
-	
+	if player.velocity.y > 0:
+		player.animated_sprite.play("falling")
+	else:
+		player.animated_sprite.play("rising")
 	
 	# horizontal movement in the air
 	var direction = Input.get_axis("move_left", "move_right")

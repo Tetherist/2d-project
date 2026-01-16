@@ -166,3 +166,7 @@ script = ExtResource("23_bi64h")
 
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("24_2ijsl")
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true

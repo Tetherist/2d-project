@@ -2,6 +2,7 @@ extends State
 
 func enter():
 	player.animated_sprite.play("run")
+	player.jump_count = 0
 	
 func physics_update(delta: float):
 	# gravity (in case we create slopes)
@@ -21,8 +22,6 @@ func physics_update(delta: float):
 			player.velocity.x = move_toward(player.velocity.x, direction * player.speed, player.acceleration * delta)
 		player.animated_sprite.flip_h = direction < 0
 	
-	
-	print(player.velocity.x)
 	player.move_and_slide()
 	
 	# transitions

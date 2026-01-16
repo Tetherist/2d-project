@@ -8,16 +8,26 @@ func enter():
 	elif player.velocity.y > 0:
 		player.animated_sprite.play("falling")
 	
+	if player.velocity.y > 0:
+		player.coyote_timer.start()
+	
 func physics_update(delta: float):
+	
+	if Input.is_action_just_pressed("jump"):
+		if not player.coyote_timer.is_stopped():
+			state_machine.transition_to("jump")
+		elif player.jump_count < player.max_jumps:
+			state_machine.transition_to("jump")
+	
 	var current_gravity = player.gravity
 
 	# variable jump height
 	if player.velocity.y < 0 and not Input.is_action_pressed("jump"):
-		current_gravity *= 2.0
+		current_gravity *= 2.2
 	
 	# if player going down, increase gravity
 	if player.velocity.y > 0:
-		current_gravity *= 1.8
+		current_gravity *= 2.0
 	
 	# gravity
 	player.velocity.y += current_gravity * delta

@@ -11,6 +11,10 @@ size = Vector2(190.5, 20)
 [node name="Player" parent="." instance=ExtResource("2_go701")]
 position = Vector2(239.00003, 242.00002)
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+process_callback = 0
+position_smoothing_enabled = true
+
 [node name="Ground2" type="StaticBody2D" parent="."]
 position = Vector2(1104, 588)
 

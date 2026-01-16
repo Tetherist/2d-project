@@ -2,7 +2,6 @@ extends State
 
 func enter():
 	player.animated_sprite.play("idle")
-	player.jump_count = 0
 
 func physics_update(delta: float):
 	player.velocity.x = move_toward(player.velocity.x, 0, player.friction * delta)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dwrvbwfrrf0mw"]
+[gd_scene load_steps=37 format=3 uid="uid://dwrvbwfrrf0mw"]
 
 [ext_resource type="Script" uid="uid://c4tlwuxgjjmhd" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://d0kno6aentxq5" path="res://Art/Animations/Stickman-Dude/Idle/frame0001.png" id="2_fs7ks"]
@@ -31,6 +31,15 @@
 [ext_resource type="Script" uid="uid://cebjitm7tiv1n" path="res://Scripts/States/Ground/idle.gd" id="21_wpjfl"]
 [ext_resource type="Script" uid="uid://cd8xggkw00d3m" path="res://Scripts/States/Air/air.gd" id="23_bi64h"]
 [ext_resource type="Script" uid="uid://c56dpb4l1074t" path="res://Scripts/States/Air/jump.gd" id="24_2ijsl"]
+[ext_resource type="Script" uid="uid://cvrrmlu3aw3f0" path="res://Scripts/States/Ground/land.gd" id="32_wohnl"]
+
+[sub_resource type="Curve" id="Curve_wohnl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_36dho"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.97674423, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fs7ks"]
 radius = 11.904763
@@ -143,6 +152,38 @@ animations = [{
 scale = Vector2(0.35, 0.35)
 script = ExtResource("1_cvnsp")
 
+[node name="RunParticles" type="CPUParticles2D" parent="."]
+position = Vector2(0, 97.143)
+scale = Vector2(0.99999994, 0.99999994)
+amount = 16
+lifetime = 0.5
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector2(-1, -0.5)
+gravity = Vector2(0, 20)
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_wohnl")
+
+[node name="JumpParticles" type="CPUParticles2D" parent="."]
+position = Vector2(0, 99.999985)
+scale = Vector2(0.99999994, 0.99999994)
+emitting = false
+amount = 10
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 50.0
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 15.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_36dho")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(6, 6)
 shape = SubResource("CapsuleShape2D_fs7ks")
@@ -166,6 +207,9 @@ script = ExtResource("23_bi64h")
 
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("24_2ijsl")
+
+[node name="Land" type="Node" parent="StateMachine"]
+script = ExtResource("32_wohnl")
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.15

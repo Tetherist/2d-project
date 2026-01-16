@@ -16,6 +16,7 @@ func physics_update(delta: float):
 	if Input.is_action_just_pressed("jump"):
 		if not player.coyote_timer.is_stopped():
 			state_machine.transition_to("jump")
+		# double jump
 		elif player.jump_count < player.max_jumps:
 			if player.jump_count == 0:
 				player.jump_count = 1
@@ -34,8 +35,12 @@ func physics_update(delta: float):
 	# gravity
 	player.velocity.y += current_gravity * delta
 	
+	print(current_gravity*delta)
+	
 	if player.velocity.y > 0:
 		player.animated_sprite.play("falling")
+		# clamp player's fall speed when going down at high speeds
+		player.velocity.y = min(player.velocity.y, player.max_fall_speed)
 	else:
 		player.animated_sprite.play("rising")
 	
@@ -51,7 +56,4 @@ func physics_update(delta: float):
 	
 	# transitions
 	if player.is_on_floor():
-		if direction == 0:
-			state_machine.transition_to("idle")
-		else:
-			state_machine.transition_to("run")
+		state_machine.transition_to("land")

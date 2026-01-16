@@ -16,8 +16,7 @@ process_callback = 0
 position_smoothing_enabled = true
 
 [node name="Ground2" type="StaticBody2D" parent="."]
-position = Vector2(907, 591)
-scale = Vector2(0.5881651, 1)
+position = Vector2(1104, 588)
 
 [node name="Sprite2D" type="Sprite2D" parent="Ground2"]
 position = Vector2(24, 0)

@@ -5,7 +5,10 @@ class_name Player
 @onready var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var max_fall_speed = 900.0
 
+@export var max_health := 100
+@export var current_health := 100
 
+# movement
 @export var top_speed := 350.0
 @export var start_speed := top_speed * 0.45
 @export var acceleration := 1500.0
@@ -26,7 +29,11 @@ class_name Player
 @onready var jump_particles = $JumpParticles
 @onready var dash_cooldown_timer = $DashCooldownTimer
 
-	
+func _ready():
+	SignalBus.on_player_hit.connect(_take_damage)
 
-
+func _take_damage(amount):
+	current_health -= amount
+	print("Took damage, current health: ", current_health)
 	
+	SignalBus.on_health_updated.emit(current_health)

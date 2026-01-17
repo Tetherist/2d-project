@@ -1,6 +1,8 @@
 extends CanvasLayer
 
-@onready var score_label = $Label
+@onready var health_label = $Health
+
+@onready var score_label = $Score
 var total_score = 0
 
 @onready var dash_bar = $DashBar
@@ -8,6 +10,9 @@ var cooldown_timer : Timer
 
 func _ready():
 	SignalBus.on_coin_collected.connect(_update_score_text)
+	
+	SignalBus.on_health_updated.connect(_update_health_text)
+	
 	var player = get_tree().get_first_node_in_group("Player")
 	
 	if player:
@@ -18,7 +23,11 @@ func _update_score_text(amount_received):
 	total_score += amount_received
 	
 	# Update the text on screen
-	score_label.text = "Score: " + str(total_score)
+	score_label.text = "Coins collected: " + str(total_score)
+
+func _update_health_text(current_health):
+	health_label.text = "Current health: " + str(current_health)
+	
 
 func _process(delta):
 	if cooldown_timer:

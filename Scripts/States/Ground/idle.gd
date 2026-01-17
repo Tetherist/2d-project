@@ -16,5 +16,5 @@ func physics_update(delta: float):
 	elif Input.get_axis("move_left", "move_right") != 0:
 		state_machine.transition_to("run")
 	elif Input.is_action_just_pressed("dash") and player.dash_cooldown_timer.is_stopped():
-		state_machine.transition_to("dashh")
+		state_machine.transition_to("dash")
 		

@@ -6,7 +6,11 @@
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_fccik")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="DashBar" type="TextureProgressBar" parent="."]
 offset_left = 1036.9999
 offset_top = 532.0
 offset_right = 1292.9999

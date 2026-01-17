@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccrj3bj0gvkn6"]
+
+[ext_resource type="Script" uid="uid://qd108gdxcsmw" path="res://Scripts/dash_ghost.gd" id="2_fifpq"]
+
+[node name="DashGhost" type="Sprite2D"]
+z_index = -1
+scale = Vector2(0.35, 0.35)
+script = ExtResource("2_fifpq")

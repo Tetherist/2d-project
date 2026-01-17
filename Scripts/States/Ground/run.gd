@@ -28,7 +28,7 @@ func physics_update(delta: float):
 			player.velocity.x = direction * player.start_speed
 		else:
 			# accelerate toward full speed
-			player.velocity.x = move_toward(player.velocity.x, direction * player.speed, player.acceleration * delta)
+			player.velocity.x = move_toward(player.velocity.x, direction * player.top_speed, player.acceleration * delta)
 	
 	player.move_and_slide()
 	
@@ -39,3 +39,5 @@ func physics_update(delta: float):
 		state_machine.transition_to("jump")
 	elif direction == 0:
 		state_machine.transition_to("idle")
+	elif Input.is_action_just_pressed("dash") and player.dash_cooldown_timer.is_stopped():
+		state_machine.transition_to("dash")

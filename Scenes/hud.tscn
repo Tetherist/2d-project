@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6cgfoftscvt7"]
+
+[ext_resource type="Script" uid="uid://dcws7xbcn6ba2" path="res://Scripts/hud.gd" id="1_fccik"]
+[ext_resource type="Texture2D" uid="uid://djdt0gap0ye0i" path="res://Art/Icons/dash_icon.png" id="2_bjfho"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_fccik")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = 1036.9999
+offset_top = 532.0
+offset_right = 1292.9999
+offset_bottom = 788.0
+scale = Vector2(0.435, 0.435)
+fill_mode = 4
+texture_under = ExtResource("2_bjfho")
+texture_progress = ExtResource("2_bjfho")
+tint_under = Color(0.3180198, 0.31801978, 0.31801975, 1)

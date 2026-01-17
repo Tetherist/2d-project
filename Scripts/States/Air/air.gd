@@ -35,8 +35,6 @@ func physics_update(delta: float):
 	# gravity
 	player.velocity.y += current_gravity * delta
 	
-	print(current_gravity*delta)
-	
 	if player.velocity.y > 0:
 		player.animated_sprite.play("falling")
 		# clamp player's fall speed when going down at high speeds
@@ -47,7 +45,7 @@ func physics_update(delta: float):
 	# horizontal movement in the air
 	var direction = Input.get_axis("move_left", "move_right")
 	if direction != 0:
-		player.velocity.x = move_toward(player.velocity.x, direction * player.speed, player.acceleration * delta)
+		player.velocity.x = move_toward(player.velocity.x, direction * player.top_speed, player.acceleration * delta)
 		player.animated_sprite.flip_h = direction < 0
 	else:
 		player.velocity.x = move_toward(player.velocity.x, 0.0, player.friction * delta)
@@ -57,3 +55,5 @@ func physics_update(delta: float):
 	# transitions
 	if player.is_on_floor():
 		state_machine.transition_to("land")
+	elif Input.is_action_just_pressed("dash") and player.dash_cooldown_timer.is_stopped():
+		state_machine.transition_to("dash")

@@ -1,7 +1,7 @@
 extends State
 
 func enter():
-	# play landing animation
+	player.animated_sprite.play("land")
 	player.jump_count = 0
 	
 func physics_update(delta: float):

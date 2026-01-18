@@ -30,10 +30,12 @@ class_name Player
 @onready var dash_cooldown_timer = $DashCooldownTimer
 
 func _ready():
+	# listen to on_player_hit signal
 	SignalBus.on_player_hit.connect(_take_damage)
 
 func _take_damage(amount):
 	current_health -= amount
 	print("Took damage, current health: ", current_health)
 	
+	# emit on_health_updated which signals to the HUD that the player HP has changed
 	SignalBus.on_health_updated.emit(current_health)

@@ -1,18 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://dh6gd10ejcdsf"]
+[gd_scene load_steps=8 format=3 uid="uid://dh6gd10ejcdsf"]
 
-[ext_resource type="Texture2D" uid="uid://ct3ru8bq2r304" path="res://icon.svg" id="1_a02cp"]
-[ext_resource type="PackedScene" uid="uid://dwrvbwfrrf0mw" path="res://Scenes/player.tscn" id="2_go701"]
-[ext_resource type="PackedScene" uid="uid://b6cgfoftscvt7" path="res://Scenes/hud.tscn" id="3_5a7ea"]
-[ext_resource type="PackedScene" uid="uid://b6my65p38pup" path="res://Scenes/coin.tscn" id="4_8j60k"]
-[ext_resource type="PackedScene" uid="uid://c5dy344ux4ca4" path="res://Scenes/spike.tscn" id="5_fo5ed"]
+[ext_resource type="PackedScene" uid="uid://dwrvbwfrrf0mw" path="res://Scenes/player.tscn" id="1_y4dr7"]
+[ext_resource type="Texture2D" uid="uid://ct3ru8bq2r304" path="res://icon.svg" id="2_didp7"]
+[ext_resource type="PackedScene" uid="uid://b6cgfoftscvt7" path="res://Scenes/hud.tscn" id="3_2a60c"]
+[ext_resource type="PackedScene" uid="uid://b6my65p38pup" path="res://Scenes/coin.tscn" id="4_4iphx"]
+[ext_resource type="PackedScene" uid="uid://c5dy344ux4ca4" path="res://Scenes/spike.tscn" id="5_jgkgd"]
+[ext_resource type="Script" uid="uid://b62c83j60eqmd" path="res://Scripts/level2button.gd" id="6_didp7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_go701"]
 size = Vector2(190.5, 20)
 
-[node name="World" type="Node"]
+[node name="Level1" type="Node"]
 
-[node name="Player" parent="." instance=ExtResource("2_go701")]
-position = Vector2(239.00003, 242.00002)
+[node name="Player" parent="." instance=ExtResource("1_y4dr7")]
+position = Vector2(200, 200)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 process_callback = 0
@@ -25,7 +26,7 @@ scale = Vector2(0.5881651, 1)
 [node name="Sprite2D" type="Sprite2D" parent="Ground2"]
 position = Vector2(24, 0)
 scale = Vector2(8.96875, 1)
-texture = ExtResource("1_a02cp")
+texture = ExtResource("2_didp7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground2"]
 position = Vector2(21.5, 0)
@@ -39,7 +40,7 @@ scale = Vector2(0.52, 1)
 [node name="Sprite2D" type="Sprite2D" parent="Ground"]
 position = Vector2(24, 0)
 scale = Vector2(8.96875, 1)
-texture = ExtResource("1_a02cp")
+texture = ExtResource("2_didp7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
 position = Vector2(21.5, 0)
@@ -53,7 +54,7 @@ scale = Vector2(0.1, 0.289)
 [node name="Sprite2D" type="Sprite2D" parent="Platform"]
 position = Vector2(24, 0)
 scale = Vector2(8.96875, 1)
-texture = ExtResource("1_a02cp")
+texture = ExtResource("2_didp7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
 position = Vector2(21.5, 0)
@@ -67,7 +68,7 @@ scale = Vector2(0.1, 0.289)
 [node name="Sprite2D" type="Sprite2D" parent="Platform2"]
 position = Vector2(24, 0)
 scale = Vector2(8.96875, 1)
-texture = ExtResource("1_a02cp")
+texture = ExtResource("2_didp7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2"]
 position = Vector2(21.5, 0)
@@ -81,17 +82,29 @@ rotation = 1.5707964
 [node name="Sprite2D" type="Sprite2D" parent="Wall"]
 position = Vector2(24, 0)
 scale = Vector2(8.96875, 1)
-texture = ExtResource("1_a02cp")
+texture = ExtResource("2_didp7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
 position = Vector2(21.5, 0)
 scale = Vector2(6, 6)
 shape = SubResource("RectangleShape2D_go701")
 
-[node name="HUD" parent="." instance=ExtResource("3_5a7ea")]
+[node name="HUD" parent="." instance=ExtResource("3_2a60c")]
 
-[node name="Coin" parent="." instance=ExtResource("4_8j60k")]
+[node name="Coin" parent="." instance=ExtResource("4_4iphx")]
 position = Vector2(896, 492)
 
-[node name="Spike" parent="." instance=ExtResource("5_fo5ed")]
+[node name="Spike" parent="." instance=ExtResource("5_jgkgd")]
 position = Vector2(693, 504)
+
+[node name="Level2Button" type="Node2D" parent="."]
+script = ExtResource("6_didp7")
+
+[node name="GoToLevel2" type="Button" parent="Level2Button"]
+offset_left = 345.0
+offset_top = 376.0
+offset_right = 513.0
+offset_bottom = 407.0
+text = "Go To Level 2 Button"
+
+[connection signal="pressed" from="Level2Button/GoToLevel2" to="Level2Button" method="_on_go_to_level_2_pressed"]

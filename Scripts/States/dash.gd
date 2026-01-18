@@ -1,10 +1,11 @@
 extends State
 
-var timer = 0.0
+var dash_duration_timer = 0.0
 
-var ghost_scene = preload("res://Scenes/dash_ghost.tscn") # Adjust path to match yours
+# preload ghost of player scene
+var ghost_scene = preload("res://Scenes/dash_ghost.tscn")
 var ghost_timer = 0.0
-var ghost_interval = 0.04 # Lower = Smoother trail. Higher = Distinct copies.
+var ghost_interval = 0.04 # lower = smoother, higher = less copies
 
 func enter():
 	player.dash_cooldown_timer.start()
@@ -12,7 +13,7 @@ func enter():
 	
 	# remove gravity
 	player.velocity.y = 0
-	timer = player.dash_duration
+	dash_duration_timer = player.dash_duration
 	
 	var direction = Input.get_axis("move_left", "move_right")
 	# dash in direction sprite is facing
@@ -22,7 +23,8 @@ func enter():
 	
 	
 func physics_update(delta: float):
-	timer -= delta
+	# subtract time from the timer
+	dash_duration_timer -= delta
 	
 	player.move_and_slide()
 	
@@ -32,7 +34,8 @@ func physics_update(delta: float):
 		ghost_timer = ghost_interval
 		spawn_ghost()
 	
-	if timer <= 0:
+	# switch to air cuz if on the ground, the air state transitions to the ground states anyway
+	if dash_duration_timer <= 0:
 		state_machine.transition_to("air")
 		
 func exit():

@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://reep5xy8s7ts"]
+
+[ext_resource type="Texture2D" uid="uid://ct3ru8bq2r304" path="res://icon.svg" id="1_ckivy"]
+[ext_resource type="PackedScene" uid="uid://dwrvbwfrrf0mw" path="res://Scenes/player.tscn" id="2_1k4by"]
+[ext_resource type="Script" uid="uid://cx87j22nvc8te" path="res://Scripts/returnToLevel1.gd" id="3_1k4by"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dlanv"]
+size = Vector2(190.5, 20)
+
+[node name="Level2" type="Node"]
+
+[node name="Ground2" type="StaticBody2D" parent="."]
+position = Vector2(379, 587)
+scale = Vector2(0.5881651, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground2"]
+position = Vector2(24, 0)
+scale = Vector2(8.96875, 1)
+texture = ExtResource("1_ckivy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground2"]
+position = Vector2(21.5, 0)
+scale = Vector2(6, 6)
+shape = SubResource("RectangleShape2D_dlanv")
+
+[node name="Player" parent="." instance=ExtResource("2_1k4by")]
+position = Vector2(367, 407)
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("3_1k4by")
+
+[node name="ReturnToLevel1" type="Button" parent="Node2D"]
+offset_left = 854.0
+offset_top = 425.0
+offset_right = 996.0
+offset_bottom = 456.0
+text = "Return To Level 1
+"
+
+[node name="Label" type="Label" parent="Node2D"]
+offset_left = 882.0
+offset_top = 382.0
+offset_right = 949.0
+offset_bottom = 405.0
+text = "Coins collected"
+
+[connection signal="pressed" from="Node2D/ReturnToLevel1" to="Node2D" method="_on_return_to_level_1_pressed"]

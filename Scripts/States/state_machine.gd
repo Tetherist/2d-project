@@ -18,16 +18,17 @@ func _ready():
 			child.state_machine = self
 			child.player = owner
 	
-	# first state
+	# in the inspector (if there is a node we put there) play the enter func of that state.
 	if initial_state:
 		initial_state.enter()
 		current_state = initial_state
 
-# bridge functions from this to the states
+# bridge process func of godot to update func of states
 func _process(delta):
 	if current_state:
 		current_state.update(delta)
 		
+# bridge physics_process func of godot to physics_update of states
 func _physics_process(delta: float) -> void:
 	if current_state:
 		current_state.physics_update(delta)
@@ -39,6 +40,7 @@ func transition_to(target_state_name: String):
 		if not states.has(key):
 			return
 		
+		# call exit function
 		if current_state:
 			current_state.exit()
 			

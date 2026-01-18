@@ -22,6 +22,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 SignalBus="*res://Global/signal_bus.gd"
+Globals="*res://Global/globals.gd"
+AudioManager="*res://Global/audio_manager.gd"
 
 [input]
 

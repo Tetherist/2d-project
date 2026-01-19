@@ -7,6 +7,8 @@ func enter():
 func exit():
 	player.run_particles.emitting = false
 
+var last_frame = -1
+
 func physics_update(delta: float):
 	# gravity (in case we create slopes)
 	player.velocity.y += player.gravity * delta
@@ -32,6 +34,16 @@ func physics_update(delta: float):
 	
 	player.move_and_slide()
 	
+	
+	# footstep sound effect
+	var current_frame = player.animated_sprite.frame
+	
+	if current_frame != last_frame:
+		if current_frame == 1 or current_frame == 5:
+			AudioManager.play_sfx("footstep", 0.2, -12.0)
+	last_frame = current_frame
+	
+	
 	# transitions
 	if not player.is_on_floor():
 		state_machine.transition_to("Air")
@@ -41,3 +53,5 @@ func physics_update(delta: float):
 		state_machine.transition_to("idle")
 	elif Input.is_action_just_pressed("dash") and player.dash_cooldown_timer.is_stopped():
 		state_machine.transition_to("dash")
+	elif Input.is_action_just_pressed("punch"):
+		state_machine.transition_to("punch")

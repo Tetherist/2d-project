@@ -1,7 +1,7 @@
 extends State
 
 func enter():
-	player.animated_sprite.play("land")
+	AudioManager.play_sfx("jump_landing", 0.1)
 	player.jump_count = 0
 	
 func physics_update(delta: float):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dwrvbwfrrf0mw"]
+[gd_scene load_steps=49 format=3 uid="uid://dwrvbwfrrf0mw"]
 
 [ext_resource type="Script" uid="uid://c4tlwuxgjjmhd" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://cg2chjn4wpaf7" path="res://Art/Animations/Stickman-Dude/Dash/dash0001.png" id="2_11gg7"]
@@ -31,12 +31,19 @@
 [ext_resource type="Texture2D" uid="uid://g5ukj7u3c3ud" path="res://Art/Animations/Stickman-Dude/Running/frame0017.png" id="18_nv4vc"]
 [ext_resource type="Texture2D" uid="uid://yxxy1oqhehvs" path="res://Art/Animations/Stickman-Dude/Running/frame0018.png" id="19_8gxox"]
 [ext_resource type="Script" uid="uid://dy002w8dshwnf" path="res://Scripts/States/state_machine.gd" id="20_wpjfl"]
+[ext_resource type="Texture2D" uid="uid://bcyhxi0aoc6bg" path="res://Art/Animations/Stickman-Dude/Punch/punch0002.png" id="21_8eeqe"]
 [ext_resource type="Script" uid="uid://cysurlp0khivp" path="res://Scripts/States/Ground/run.gd" id="21_olqyp"]
 [ext_resource type="Script" uid="uid://cebjitm7tiv1n" path="res://Scripts/States/Ground/idle.gd" id="21_wpjfl"]
+[ext_resource type="Texture2D" uid="uid://dpwvij60es8f3" path="res://Art/Animations/Stickman-Dude/Punch/punch0003.png" id="22_5x828"]
 [ext_resource type="Script" uid="uid://cd8xggkw00d3m" path="res://Scripts/States/Air/air.gd" id="23_bi64h"]
+[ext_resource type="Texture2D" uid="uid://cva1vlnhj3211" path="res://Art/Animations/Stickman-Dude/Punch/punch0004.png" id="23_c1k8q"]
 [ext_resource type="Script" uid="uid://c56dpb4l1074t" path="res://Scripts/States/Air/jump.gd" id="24_2ijsl"]
+[ext_resource type="Texture2D" uid="uid://q1drgr2qvi8w" path="res://Art/Animations/Stickman-Dude/Punch/punch0005.png" id="24_e6mvm"]
+[ext_resource type="Texture2D" uid="uid://0ger6ojexq83" path="res://Art/Animations/Stickman-Dude/Punch/punch0006.png" id="25_57lvd"]
+[ext_resource type="Texture2D" uid="uid://c7bbjvnn2p5aq" path="res://Art/Animations/Stickman-Dude/Punch/punch0007.png" id="26_ie7r7"]
 [ext_resource type="Script" uid="uid://cvrrmlu3aw3f0" path="res://Scripts/States/Ground/land.gd" id="32_wohnl"]
 [ext_resource type="Script" uid="uid://c5xy7lld68fg8" path="res://Scripts/States/dash.gd" id="33_36dho"]
+[ext_resource type="Script" uid="uid://dvvgre4qevcgg" path="res://Scripts/States/Ground/punch.gd" id="38_qpa8y"]
 
 [sub_resource type="Curve" id="Curve_wohnl"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -133,6 +140,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("21_8eeqe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_5x828")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_c1k8q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_e6mvm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_57lvd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_ie7r7")
+}],
+"loop": false,
+"name": &"punch",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("16_yh6i2")
 }, {
 "duration": 1.0,
@@ -217,9 +247,7 @@ shape = SubResource("CapsuleShape2D_fs7ks")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_11gg7")
-animation = &"dash"
-frame = 1
-frame_progress = 0.34936106
+animation = &"run"
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("20_wpjfl")
@@ -242,6 +270,9 @@ script = ExtResource("32_wohnl")
 
 [node name="Dash" type="Node" parent="StateMachine"]
 script = ExtResource("33_36dho")
+
+[node name="Punch" type="Node" parent="StateMachine"]
+script = ExtResource("38_qpa8y")
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.15

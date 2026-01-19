@@ -9,7 +9,8 @@ var sounds = {
 	"coin": preload("res://Audio/coin.mp3"),
 	"jump_takeoff": preload("res://Audio/jump_takeoff.mp3"),
 	"jump_landing": preload("res://Audio/jump_landing.mp3"),
-	"footstep": preload("res://Audio/footstep.mp3")
+	"footstep": preload("res://Audio/footstep.mp3"),
+	"dash": preload("res://Audio/dash.mp3")
 }
 
 # we'll store audiostreamplayer in a var so we can loop and fade music.

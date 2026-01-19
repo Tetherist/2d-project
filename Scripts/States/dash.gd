@@ -10,6 +10,7 @@ var ghost_interval = 0.04 # lower = smoother, higher = less copies
 func enter():
 	player.dash_cooldown_timer.start()
 	player.animated_sprite.play("dash")
+	AudioManager.play_sfx("dash")
 	
 	# remove gravity
 	player.velocity.y = 0
